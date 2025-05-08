@@ -1,0 +1,42 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "standard": {
+            "format": "[%(levelname)s] %(asctime)s → %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        },
+        "detailed": {
+            "format": "[%(levelname)s] %(asctime)s [%(name)s.%(funcName)s:%(lineno)d] → %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "standard",
+            "stream": "ext://sys.stdout"
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "formatter": "detailed",
+            "filename": "DYNAMIC_LOG_PATH",
+            "maxBytes": 5242880,
+            "backupCount": 3,
+            "encoding": "utf-8"
+        }
+    },
+    "loggers": {
+        "fam8_campaign": {
+            "level": "INFO",
+            "handlers": ["console", "file"],
+            "propagate": false
+        }
+    },
+    "root": {
+        "level": "INFO",
+        "handlers": ["console", "file"]
+    }
+}
